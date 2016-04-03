@@ -40,7 +40,7 @@ php artisan vendor:publish
 
 ## Configuration
 
-...
+Please see [CONFIGURATION.md](CONFIGURATION.md) for more information on how to configure this package.
 
 
 ## Usage
