@@ -8,7 +8,7 @@ The `inflector` option specifies the class used determine what method you want t
 
 Tactician comes bundled with these inflector classes:
 
-- `HandleInflector` (default)
+- `HandleInflector` __(default)__
 - `HandleClassNameInflector`
 - `HandleClassNameWithoutSuffixInflector`
 - `InvokeInflector`
@@ -33,7 +33,7 @@ This packages comes 3 bundled locator classes.
 
 The `AdjacentLocator` returns handlers located in the same directory:
 
-```
+```php
 Acme\RegisterUserCommand => Acme\RegisterUserCommandHandler
 Acme\Foobar\RegisterUserCommand => Acme\Foobar\RegisterUserCommandHandler
 ```
@@ -44,7 +44,7 @@ The `NamespaceLocator` returns handlers located in the configured namespace. See
 
 By default commands are located in `App\Commands` and handlers are located in `App\Handlers\Commands`:
 
-```
+```php
 App\Commands\RegisterUserCommand => App\Handlers\Commands\RegisterUserCommandHandler
 ```
 
@@ -52,7 +52,7 @@ App\Commands\RegisterUserCommand => App\Handlers\Commands\RegisterUserCommandHan
 
 The `MappingLocator` returns handlers based on the command’s class name. See `handlers` option.
 
-```
+```php
 Acme\Foo\Bar\RegisterUserCommand => Acme\Foobar\RegisterUserHandler',
 ```
 
@@ -67,7 +67,7 @@ You may enable the following bundled middleware, or add your own custom middlewa
 
 ### Locking Middleware
 
-The `LockingMiddleware` blocks any commands from running inside commands. If a command is already being executed and another command comes in, this middleware will queue it in-memory until the first command completes.
+Tactician’s bundled `LockingMiddleware` blocks any commands from running inside commands. If a command is already being executed and another command comes in, this middleware will queue it in-memory until the first command completes.
 
 ### Transaction Middleware
 
