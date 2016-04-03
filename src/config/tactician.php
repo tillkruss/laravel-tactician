@@ -21,7 +21,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Next, you may define the extractor class used to identify which
-    | command we’re dealing with. The class accept an incoming
+    | command we’re dealing with. The class accepts an incoming
     | command and returns a string name for it.
     |
     */
