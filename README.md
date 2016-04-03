@@ -8,11 +8,12 @@ A flexible and easy to use implementation of the Tactician command bus for Larav
 
 ## Introduction
 
-This package is a stand-alone command bus implementation of the PHP League's [Tactician](http://tactician.thephpleague.com) command bus, it's not a replacement for Laravel's command bus or queue.
+This package is a stand-alone command bus implementation of the PHP League’s [Tactician](http://tactician.thephpleague.com) command bus, it’s not a replacement for Laravel’s command bus or queue.
 
-Features:
+__Features:__
+
 - Easy to use, configure and extend
-- Global *and/or* per-command middleware stacks
+- _Global_ and/or _per-command_ middleware stacks
 - 3 kinds of command handler locators
 - Database transaction middleware
 
@@ -46,6 +47,8 @@ Please see [CONFIGURATION.md](CONFIGURATION.md) for more information on how to c
 ## Usage
 
 ...
+- examples folder?
+- USAGE.md?
 
 
 ## License
