@@ -1,6 +1,6 @@
 {
-    "name": "tillkruss/larvel-tactician",
-    "description": "...",
+    "name": "tillkruss/laravel-tactician",
+    "description": "A flexible and easy to use implementation of the Tactician command bus for Laravel 5.",
     "keywords": ["laravel", "tactician", "command", "command bus", "service layer"],
     "license": "MIT",
     "authors": [
