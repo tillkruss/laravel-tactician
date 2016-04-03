@@ -43,7 +43,7 @@ class Executer implements ExecuterContract
     }
 
     /**
-     * Marshal a command from the given object and execute it in the command bus.
+     * Marshal a command from the given class name and execute it in the command bus.
      *
      * @param  string       $command
      * @param  ArrayAccess  $source
@@ -57,7 +57,7 @@ class Executer implements ExecuterContract
     }
 
     /**
-     * Marshal a command from the given array and execute it in the command bus.
+     * Marshal a command from the given class name and execute it in the command bus.
      *
      * @param  string  $command
      * @param  array   $array
