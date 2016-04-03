@@ -46,9 +46,7 @@ Please see [CONFIGURATION.md](CONFIGURATION.md) for more information on how to c
 
 ## Usage
 
-...
-- examples folder?
-- USAGE.md?
+Please see [USAGE.md](USAGE.md) for code samples and more information on how to use this package.
 
 
 ## License
