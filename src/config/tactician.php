@@ -53,8 +53,8 @@ return [
     */
 
     'middleware' => [
-        League\Tactician\Plugins\LockingMiddleware::class,
-        TillKruss\LaravelTactician\Middleware\TransactionMiddleware::class,
+        // League\Tactician\Plugins\LockingMiddleware::class,
+        // TillKruss\LaravelTactician\Middleware\TransactionMiddleware::class,
         League\Tactician\Handler\CommandHandlerMiddleware::class,
     ],
 
