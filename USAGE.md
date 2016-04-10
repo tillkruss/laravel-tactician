@@ -5,11 +5,11 @@ To pass commands to the command bus is, you can either use the `Executer` or the
 Both come with the following methods:
 
 ```php
-public function execute($command, array $middleware = []);
+public function execute($command);
 
-public function executeFrom($command, ArrayAccess $source, array $extras = [], array $middleware = []);
+public function executeFrom($command, ArrayAccess $source, array $extras = []);
 
-public function executeFromArray($command, array $array, array $middleware = []);
+public function executeFromArray($command, array $array);
 ```
 
 You can find examples for all three methods below, but first the basics of executing commands.
@@ -64,10 +64,10 @@ class UserController extends Controller
 ## Using `execute()`
 
 ```php
-public function execute($command, array $middleware = []);
+public function execute($command);
 ```
 
-The `execute()` method takes two arguments. The first is the command object itself and the second is an _optional_ middleware stack:
+The `execute()` method takes only one argument, the command object itself:
 
 ```php
 class UserController extends Controller
@@ -79,9 +79,7 @@ class UserController extends Controller
             $request->get('password')
         );
 
-        $middleware = new TransactionMiddleware;
-
-        $this->execute($command, [$middleware]);
+        $this->execute($command);
     }
 }
 ```
@@ -90,7 +88,7 @@ class UserController extends Controller
 ## Using `executeFrom()`
 
 ```php
-public function executeFrom($command, ArrayAccess $source, array $extras = [], array $middleware = []);
+public function executeFrom($command, ArrayAccess $source, array $extras = []);
 ```
 
 The `executeFrom()` method creates a new command object from the given class name and injects the command’s properties from the given array accessible source:
@@ -105,8 +103,6 @@ class UserController extends Controller
 }
 ```
 
-Additionally, you may pass in (or override) additional properties to the command with the third argument:
-
 ```php
 class UserController extends Controller
 {
@@ -119,13 +115,11 @@ class UserController extends Controller
 }
 ```
 
-The `executeFrom()` method accepts an _optional_ middleware stack as fourth argument.
-
 
 ## Using `executeFromArray()`
 
 ```php
-public function executeFromArray($command, array $array, array $middleware = []);
+public function executeFromArray($command, array $array);
 ```
 
 The `executeFromArray()` method creates a new command object from the given class name and injects the command’s properties from the given array:
@@ -141,5 +135,3 @@ class UserController extends Controller
     }
 }
 ```
-
-The `executeFromArray()` method accepts an _optional_ middleware stack as third argument.

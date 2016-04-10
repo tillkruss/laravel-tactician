@@ -43,12 +43,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Global Middleware Stack
+    | Middleware Stack
     |--------------------------------------------------------------------------
     |
     | In this list you may specify the global middleware stack that's
-    | injected into the command bus. Of course, you can inject an
-    | additional middleware stack for each command as well.
+    | injected into the command bus instance to add behavior.
+    | Middleware are executed in sequence.
     |
     */
 

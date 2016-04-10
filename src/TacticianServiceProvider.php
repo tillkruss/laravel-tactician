@@ -45,21 +45,16 @@ class TacticianServiceProvider extends ServiceProvider
      */
     protected function registerCommandBus()
     {
-        $this->app->bind('League\Tactician\CommandBus', function ($app, $parameters) {
-            return $app->make('tactician.commandbus', $parameters);
+        $this->app->singleton('League\Tactician\CommandBus', function ($app) {
+            return $app->make('tactician.commandbus');
         });
 
-        $this->app->bind('tactician.commandbus', function ($app, $parameters) {
-            $middleware = array_merge(
-                isset($parameters[0]) ? $parameters[0] : [],
-                $app->config->get('tactician.middleware')
-            );
-
-            $resolvedMiddleware = array_map(function ($name) use ($app) {
+        $this->app->singleton('tactician.commandbus', function ($app) {
+            $middleware = array_map(function ($name) use ($app) {
                 return is_string($name) ? $app->make($name) : $name;
-            }, $middleware);
+            }, $app->config->get('tactician.middleware'));
 
-            return new CommandBus($resolvedMiddleware);
+            return new CommandBus($middleware);
         });
     }
 
@@ -70,7 +65,7 @@ class TacticianServiceProvider extends ServiceProvider
      */
     protected function registerCommandExecuter()
     {
-        $this->app->bind('TillKruss\LaravelTactician\Contracts\Executer', function ($app) {
+        $this->app->singleton('TillKruss\LaravelTactician\Contracts\Executer', function ($app) {
             return $app->make(TillKruss\LaravelTactician\Executer::class);
         });
     }

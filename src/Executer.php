@@ -7,39 +7,37 @@ use ReflectionClass;
 use ReflectionParameter;
 use League\Tactician\CommandBus;
 use Illuminate\Support\Collection;
-use Illuminate\Contracts\Container\Container;
 use TillKruss\LaravelTactician\Exceptions\CanNotMapParameterValue;
 use TillKruss\LaravelTactician\Contracts\Executer as ExecuterContract;
 
 class Executer implements ExecuterContract
 {
     /**
-     * The container instance.
+     * The command bus instance.
      *
-     * @var Illuminate\Contracts\Container\Container
+     * @var League\Tactician\CommandBus
      */
-    protected $container;
+    protected $bus;
 
     /**
      * Create a new command bus executer.
      *
-     * @param Illuminate\Contracts\Container\Container  $container
+     * @param League\Tactician\CommandBus  $bus
      */
-    public function __construct(Container $container)
+    public function __construct(CommandBus $bus)
     {
-        $this->container = $container;
+        $this->bus = $bus;
     }
 
     /**
      * Executes a command in the command bus.
      *
      * @param  object  $command
-     * @param  array   $middleware
      * @return mixed
      */
-    public function execute($command, array $middleware = [])
+    public function execute($command)
     {
-        return $this->container->make(CommandBus::class, $middleware)->handle($command);
+        return $this->bus->handle($command);
     }
 
     /**
@@ -48,12 +46,11 @@ class Executer implements ExecuterContract
      * @param  string       $command
      * @param  ArrayAccess  $source
      * @param  array        $extras
-     * @param  array        $middleware
      * @return mixed
      */
-    public function executeFrom($command, ArrayAccess $source, array $extras = [], array $middleware = [])
+    public function executeFrom($command, ArrayAccess $source, array $extras = [])
     {
-        return $this->execute($this->marshal($command, $source, $extras, $middleware));
+        return $this->execute($this->marshal($command, $source, $extras));
     }
 
     /**
@@ -61,12 +58,11 @@ class Executer implements ExecuterContract
      *
      * @param  string  $command
      * @param  array   $array
-     * @param  array   $middleware
      * @return mixed
      */
-    public function executeFromArray($command, array $array, array $middleware = [])
+    public function executeFromArray($command, array $array)
     {
-        return $this->execute($this->marshalFromArray($command, $array, $middleware));
+        return $this->execute($this->marshalFromArray($command, $array));
     }
 
     /**

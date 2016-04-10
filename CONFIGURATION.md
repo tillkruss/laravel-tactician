@@ -57,7 +57,7 @@ Acme\Foo\Bar\RegisterUserCommand => Acme\Foobar\RegisterUserHandler',
 ```
 
 
-## Global Middleware Stack
+## Middleware Stack
 
 The `middleware` option specifies the global middleware stack that’s automatically injected into the command bus.
 

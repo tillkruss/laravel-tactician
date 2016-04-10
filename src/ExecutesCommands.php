@@ -12,12 +12,11 @@ trait ExecutesCommands
      * Executes a command in the command bus.
      *
      * @param  object  $command
-     * @param  array   $middleware
      * @return mixed
      */
-    protected function execute($command, array $middleware = [])
+    protected function execute($command)
     {
-        return App::make(Executer::class)->execute($command, $middleware);
+        return App::make(Executer::class)->execute($command);
     }
 
     /**
@@ -26,12 +25,11 @@ trait ExecutesCommands
      * @param  string       $command
      * @param  ArrayAccess  $source
      * @param  array        $extras
-     * @param  array        $middleware
      * @return mixed
      */
-    protected function executeFrom($command, ArrayAccess $source, array $extras = [], array $middleware = [])
+    protected function executeFrom($command, ArrayAccess $source, array $extras = [])
     {
-        return App::make(Executer::class)->executeFrom($command, $source, $extras, $middleware);
+        return App::make(Executer::class)->executeFrom($command, $source, $extras);
     }
 
     /**
@@ -39,11 +37,10 @@ trait ExecutesCommands
      *
      * @param  string  $command
      * @param  array   $array
-     * @param  array   $middleware
      * @return mixed
      */
-    protected function executeFromArray($command, array $array, array $middleware = [])
+    protected function executeFromArray($command, array $array)
     {
-        return App::make(Executer::class)->executeFromArray($command, $array, $middleware);
+        return App::make(Executer::class)->executeFromArray($command, $array);
     }
 }
