@@ -14,7 +14,6 @@ This package is a stand-alone command bus implementation of the PHP League’s [
 __Features:__
 
 - Easy to use, configure and extend
-- _Global_ and/or _per-command_ middleware stacks
 - 3 kinds of command handler locators
 - Database transaction middleware
 
