@@ -5,7 +5,6 @@ namespace TillKruss\LaravelTactician\Tests;
 use Mockery;
 use PHPUnit_Framework_TestCase;
 use League\Tactician\CommandBus;
-use League\Tactician\Middleware;
 use Illuminate\Support\Collection;
 use TillKruss\LaravelTactician\Executer;
 use TillKruss\LaravelTactician\Tests\Fixtures\TestCommand;
