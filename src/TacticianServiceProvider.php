@@ -66,7 +66,7 @@ class TacticianServiceProvider extends ServiceProvider
     protected function registerCommandExecuter()
     {
         $this->app->singleton('TillKruss\LaravelTactician\Contracts\Executer', function ($app) {
-            return $app->make(TillKruss\LaravelTactician\Executer::class);
+            return $app->make(Executer::class);
         });
     }
 
