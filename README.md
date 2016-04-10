@@ -36,7 +36,7 @@ TillKruss\LaravelTactician\TacticianServiceProvider,
 After that, add the `tactician.php` configuration file by running:
 
 ```
-php artisan vendor:publish
+php artisan vendor:publish --provider="TillKruss\LaravelTactician\TacticianServiceProvider"
 ```
 
 
