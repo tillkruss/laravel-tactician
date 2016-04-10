@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tillkruss/laravel-tactician.svg?branch=master)](https://travis-ci.org/tillkruss/laravel-tactician)
 [![Latest Stable Version](https://poser.pugx.org/tillkruss/laravel-tactician/v/stable)](https://packagist.org/packages/tillkruss/laravel-tactician)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tillkruss/laravel-tactician/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tillkruss/laravel-tactician/?branch=master)
 [![License](https://poser.pugx.org/tillkruss/laravel-tactician/license)](https://packagist.org/packages/tillkruss/laravel-tactician)
 
 A flexible and easy to use implementation of the Tactician command bus for Laravel 5.
