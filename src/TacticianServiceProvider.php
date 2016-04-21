@@ -87,7 +87,7 @@ class TacticianServiceProvider extends ServiceProvider
     protected function registerLoggerMiddleware()
     {
         $this->app->bind('League\Tactician\Logger\LoggerMiddleware', function ($app) {
-            return $app->make(EventMiddleware::class);
+            return $app->make(LoggerMiddleware::class);
         });
     }
 
