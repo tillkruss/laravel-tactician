@@ -10,15 +10,42 @@ use Illuminate\Foundation\Application;
 
 class LoggerMiddleware implements Middleware
 {
+    /**
+     * The application instance.
+     *
+     * @var Illuminate\Foundation\Application
+     */
     protected $app;
+
+    /**
+     * The logger instance.
+     *
+     * @var Illuminate\Contracts\Logging\Log
+     */
     protected $logger;
 
+    /**
+     * Create a new logger middleware.
+     *
+     * @param Illuminate\Contracts\Logging\Log   $logger
+     * @param Illuminate\Foundation\Application  $app
+     */
     public function __construct(Log $logger, Application $app)
     {
         $this->app = $app;
         $this->logger = $logger;
     }
 
+    /**
+     * Write a message to the log whenever a command is received, handled or failed.
+     *
+     * @param  object    $command
+     * @param  callable  $next
+     * @return mixed
+     *
+     * @throws Exception
+     * @throws Throwable
+     */
     public function execute($command, callable $next)
     {
         $levels = $this->app->config->get('tactician.log.levels');
@@ -43,6 +70,12 @@ class LoggerMiddleware implements Middleware
         return $returnValue;
     }
 
+    /**
+     * Passes message and log level to logger instance.
+     *
+     * @param  string       $logLevel
+     * @param  string|null  $message
+     */
     protected function log($logLevel, $message)
     {
         if (! is_null($message)) {
