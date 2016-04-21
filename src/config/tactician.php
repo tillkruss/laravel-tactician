@@ -112,7 +112,7 @@ return [
             'received' => 'debug',
             'handled' => 'debug',
             'failed' => 'error',
-        ]
+        ],
 
     ],
 

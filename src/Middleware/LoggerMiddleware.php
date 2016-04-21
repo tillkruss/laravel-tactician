@@ -13,7 +13,8 @@ class LoggerMiddleware implements Middleware
     protected $app;
     protected $logger;
 
-    public function __construct(Log $logger, Application $app) {
+    public function __construct(Log $logger, Application $app)
+    {
         $this->app = $app;
         $this->logger = $logger;
     }
