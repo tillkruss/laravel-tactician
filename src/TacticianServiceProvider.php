@@ -16,8 +16,6 @@ class TacticianServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -29,13 +27,12 @@ class TacticianServiceProvider extends ServiceProvider
 
     /**
      * Register the tactician services.
-     *
-     * @return void
      */
     public function register()
     {
         $this->registerCommandBus();
         $this->registerCommandExecuter();
+        $this->registerLoggerMiddleware();
         $this->registerCommandEventsMiddleware();
         $this->registerCommandHandlerMiddleware();
         $this->bindTacticianInterfaces();
@@ -43,8 +40,6 @@ class TacticianServiceProvider extends ServiceProvider
 
     /**
      * Register the command bus instance.
-     *
-     * @return void
      */
     protected function registerCommandBus()
     {
@@ -63,8 +58,6 @@ class TacticianServiceProvider extends ServiceProvider
 
     /**
      * Register the command bus executer instance.
-     *
-     * @return void
      */
     protected function registerCommandExecuter()
     {
@@ -75,8 +68,6 @@ class TacticianServiceProvider extends ServiceProvider
 
     /**
      * Register the command handler middleware instance.
-     *
-     * @return void
      */
     protected function registerCommandHandlerMiddleware()
     {
@@ -109,8 +100,6 @@ class TacticianServiceProvider extends ServiceProvider
 
     /**
      * Register the tactician interface instances.
-     *
-     * @return void
      */
     protected function bindTacticianInterfaces()
     {

@@ -37,7 +37,7 @@ class LoggerMiddleware implements Middleware
     }
 
     /**
-     * Write a message to the log whenever a command is received, handled or failed.
+     * Write a message to the log whenever a command is received, handled or fails.
      *
      * @param  object    $command
      * @param  callable  $next
