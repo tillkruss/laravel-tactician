@@ -20,7 +20,7 @@ class CommandFailed implements CommandEvent
     /**
      * Whether the exception is caught, or not.
      *
-     * @var boolean
+     * @var bool
      */
     protected $exceptionCaught = false;
 
@@ -57,7 +57,7 @@ class CommandFailed implements CommandEvent
     /**
      * Whether the exception is caught, or not.
      *
-     * @return boolean
+     * @return bool
      */
     public function isExceptionCaught()
     {
