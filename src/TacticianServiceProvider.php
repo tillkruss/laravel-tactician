@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use TillKruss\LaravelTactician\Executer;
 use League\Tactician\Handler\Locator\HandlerLocator;
 use League\Tactician\Handler\CommandHandlerMiddleware;
+use TillKruss\LaravelTactician\Middleware\EventMiddleware;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
 
@@ -34,6 +35,7 @@ class TacticianServiceProvider extends ServiceProvider
     {
         $this->registerCommandBus();
         $this->registerCommandExecuter();
+        $this->registerCommandEventsMiddleware();
         $this->registerCommandHandlerMiddleware();
         $this->bindTacticianInterfaces();
     }
@@ -87,6 +89,13 @@ class TacticianServiceProvider extends ServiceProvider
                 $app->make(HandlerLocator::class),
                 $app->make(MethodNameInflector::class)
             );
+        });
+    }
+
+    protected function registerCommandEventsMiddleware()
+    {
+        $this->app->bind('League\Tactician\CommandEvents\EventMiddleware', function ($app) {
+            return $app->make(EventMiddleware::class);
         });
     }
 

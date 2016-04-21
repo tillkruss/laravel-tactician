@@ -54,6 +54,7 @@ return [
 
     'middleware' => [
         // League\Tactician\Plugins\LockingMiddleware::class,
+        // League\Tactician\CommandEvents\EventMiddleware::class,
         // TillKruss\LaravelTactician\Middleware\TransactionMiddleware::class,
         // TillKruss\LaravelTactician\Middleware\LoggerMiddleware::class,
         League\Tactician\Handler\CommandHandlerMiddleware::class,
