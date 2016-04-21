@@ -8,6 +8,7 @@ use TillKruss\LaravelTactician\Executer;
 use League\Tactician\Handler\Locator\HandlerLocator;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use TillKruss\LaravelTactician\Middleware\EventMiddleware;
+use TillKruss\LaravelTactician\Middleware\LoggerMiddleware;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
 
@@ -89,6 +90,13 @@ class TacticianServiceProvider extends ServiceProvider
                 $app->make(HandlerLocator::class),
                 $app->make(MethodNameInflector::class)
             );
+        });
+    }
+
+    protected function registerLoggerMiddleware()
+    {
+        $this->app->bind('League\Tactician\Logger\LoggerMiddleware', function ($app) {
+            return $app->make(EventMiddleware::class);
         });
     }
 
