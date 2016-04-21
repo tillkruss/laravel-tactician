@@ -4,10 +4,10 @@ namespace TillKruss\LaravelTactician\Tests\Middleware;
 
 use Error;
 use Mockery;
-use stdClass;
 use Exception;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Database\DatabaseManager;
+use TillKruss\LaravelTactician\Tests\Fixtures\TestCommand;
 use TillKruss\LaravelTactician\Middleware\TransactionMiddleware;
 
 class TransactionMiddlewareTest extends PHPUnit_Framework_TestCase
@@ -32,7 +32,7 @@ class TransactionMiddlewareTest extends PHPUnit_Framework_TestCase
             $executed++;
         };
 
-        $this->middleware->execute(new stdClass, $next);
+        $this->middleware->execute(new TestCommand, $next);
 
         $this->assertEquals(1, $executed);
     }
@@ -49,7 +49,7 @@ class TransactionMiddlewareTest extends PHPUnit_Framework_TestCase
             throw new Exception('Command Failed');
         };
 
-        $this->middleware->execute(new stdClass, $next);
+        $this->middleware->execute(new TestCommand, $next);
     }
 
     public function testCommandFailsWithErrorAndTransactionIsRolledBack()
@@ -64,6 +64,6 @@ class TransactionMiddlewareTest extends PHPUnit_Framework_TestCase
             throw new Error('Command Failed');
         };
 
-        $this->middleware->execute(new stdClass, $next);
+        $this->middleware->execute(new TestCommand, $next);
     }
 }
