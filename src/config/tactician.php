@@ -55,6 +55,7 @@ return [
     'middleware' => [
         // League\Tactician\Plugins\LockingMiddleware::class,
         // TillKruss\LaravelTactician\Middleware\TransactionMiddleware::class,
+        // TillKruss\LaravelTactician\Middleware\LoggerMiddleware::class,
         League\Tactician\Handler\CommandHandlerMiddleware::class,
     ],
 
@@ -87,6 +88,32 @@ return [
 
     'handlers' => [
         'App\Commands\SomeCommand' => 'App\Handlers\Commands\SomeCommandHandler',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Logger Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Here you may set the formatter that is responsible for converting
+    | the command into a loggable message and the log levels used
+    | for received, handled and failed commands.
+    |
+    | Supported: "debug", "info", "notice", "warning",
+    |            "error", "critical", "alert", "emergency"
+    |
+    */
+
+    'log' => [
+
+        'formatter' => League\Tactician\Logger\Formatter\ClassNameFormatter::class,
+
+        'levels' => [
+            'received' => 'debug',
+            'handled' => 'debug',
+            'failed' => 'error',
+        ]
+
     ],
 
 ];
