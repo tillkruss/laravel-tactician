@@ -1,5 +1,17 @@
 # Laravel Tactician Usage
 
+Table of Contents:
+
+- [Executing Commands](#executing-commands)
+- [Execute Commands via Executer](#execute-commands-via-executer)
+- [Execute Commands via Trait](#execute-commands-via-trait)
+- [Using `execute()`](#using-execute)
+- [Using `executeFrom()`](#using-executefrom)
+- [Using `executeFromArray()`](#using-executefromarray)
+- [Listening to Command Events](#listening-to-command-events)
+
+## Executing Commands
+
 To pass commands to the command bus is, you can either use the `Executer` or the `ExecutesCommands` trait.
 
 Both come with the following methods:
@@ -145,7 +157,7 @@ If the `EventMiddleware` is enabled, it dispatches an event whenever a command i
 - `command.handled`
 - `command.failed`
 
-Event listeners will receive the command event object. You may access the command itself via `$event->getCommand()`.
+Event listeners will receive the command event object. You may access the command itself with the `getCommand()` method:
 
 ```php
 use TillKruss\LaravelTactician\Events\CommandHandled;
