@@ -25,16 +25,24 @@ class EventMiddlewareTest extends PHPUnit_Framework_TestCase
 
     public function testSuccessEventsAreDispatched()
     {
-        $this->dispatcher->shouldReceive('fire')->once()->with(Mockery::type(CommandReceived::class));
-        $this->dispatcher->shouldReceive('fire')->once()->with(Mockery::type(CommandHandled::class));
+        $this->dispatcher->shouldReceive('fire')->once()->with(
+            'command.received', Mockery::type(CommandReceived::class)
+        );
+        $this->dispatcher->shouldReceive('fire')->once()->with(
+            'command.handled', Mockery::type(CommandHandled::class)
+        );
 
         $this->middleware->execute(new TestCommand, function () {});
     }
 
     public function testFailureEventsAreDispatched()
     {
-        $this->dispatcher->shouldReceive('fire')->once()->with(Mockery::type(CommandReceived::class));
-        $this->dispatcher->shouldReceive('fire')->once()->with(Mockery::type(CommandFailed::class));
+        $this->dispatcher->shouldReceive('fire')->once()->with(
+            'command.received', Mockery::type(CommandReceived::class)
+        );
+        $this->dispatcher->shouldReceive('fire')->once()->with(
+            'command.failed', Mockery::type(CommandFailed::class)
+        );
 
         $this->setExpectedException(Exception::class, 'Command Failed');
 
@@ -47,13 +55,16 @@ class EventMiddlewareTest extends PHPUnit_Framework_TestCase
 
     public function testFailureEventExceptionsCanBeCaught()
     {
-        $this->dispatcher->shouldReceive('fire')->with(Mockery::on(function ($event) {
-            if ($event instanceof CommandFailed) {
-                $event->catchException();
-            }
+        $this->dispatcher->shouldReceive('fire')->with(
+            'command.failed',
+            Mockery::on(function ($event) {
+                if ($event instanceof CommandFailed) {
+                    $event->catchException();
+                }
 
-            return true;
-        }));
+                return true;
+            })
+        );
 
         $next = function () use (&$executed) {
             throw new Exception('Command Failed');
