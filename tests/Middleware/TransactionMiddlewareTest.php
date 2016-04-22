@@ -66,4 +66,20 @@ class TransactionMiddlewareTest extends PHPUnit_Framework_TestCase
 
         $this->middleware->execute(new TestCommand, $next);
     }
+
+    public function testNextCallableIsInvoked()
+    {
+        $this->database->shouldIgnoreMissing();
+
+        $sentCommand = new TestCommand;
+        $receivedSameCommand = false;
+
+        $next = function ($receivedCommand) use (&$receivedSameCommand, $sentCommand) {
+            $receivedSameCommand = ($receivedCommand === $sentCommand);
+        };
+
+        $this->middleware->execute($sentCommand, $next);
+
+        $this->assertTrue($receivedSameCommand);
+    }
 }

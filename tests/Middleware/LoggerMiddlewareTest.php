@@ -134,13 +134,12 @@ class LoggerMiddlewareTest extends PHPUnit_Framework_TestCase
         $this->logger->shouldReceive('log')->with('info', 'received');
         $this->logger->shouldReceive('log')->with('emergency', 'failed');
 
+        $next = function () use (&$executed) {
+            throw new Exception('Command Failed');
+        };
+
         $this->setExpectedException(Exception::class, 'Command Failed');
 
-        $this->middleware->execute(
-            new TestCommand,
-            function () {
-                throw new Exception('Command Failed');
-            }
-        );
+        $this->middleware->execute(new TestCommand, $next);
     }
 }
