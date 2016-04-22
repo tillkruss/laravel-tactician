@@ -4,7 +4,7 @@ namespace TillKruss\LaravelTactician;
 
 use App;
 use ArrayAccess;
-use TillKruss\LaravelTactician\Contracts\Executer;
+use TillKruss\LaravelTactician\Contracts\Executer as ExecuterContract;
 
 trait ExecutesCommands
 {
@@ -16,7 +16,7 @@ trait ExecutesCommands
      */
     protected function execute($command)
     {
-        return App::make(Executer::class)->execute($command);
+        return App::make(ExecuterContract::class)->execute($command);
     }
 
     /**
@@ -29,7 +29,7 @@ trait ExecutesCommands
      */
     protected function executeFrom($command, ArrayAccess $source, array $extras = [])
     {
-        return App::make(Executer::class)->executeFrom($command, $source, $extras);
+        return App::make(ExecuterContract::class)->executeFrom($command, $source, $extras);
     }
 
     /**
@@ -41,6 +41,6 @@ trait ExecutesCommands
      */
     protected function executeFromArray($command, array $array)
     {
-        return App::make(Executer::class)->executeFromArray($command, $array);
+        return App::make(ExecuterContract::class)->executeFromArray($command, $array);
     }
 }
