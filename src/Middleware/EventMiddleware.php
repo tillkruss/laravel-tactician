@@ -42,17 +42,17 @@ class EventMiddleware implements Middleware
     public function execute($command, callable $next)
     {
         try {
-            $this->dispatcher->fire(new CommandReceived($command));
+            $this->dispatcher->fire('command.received', new CommandReceived($command));
 
             $returnValue = $next($command);
 
-            $this->dispatcher->fire(new CommandHandled($command));
+            $this->dispatcher->fire('command.handled', new CommandHandled($command));
 
             return $returnValue;
         } catch (Exception $exception) {
             $event = new CommandFailed($command, $exception);
 
-            $this->dispatcher->fire($event);
+            $this->dispatcher->fire('command.failed', $event);
 
             if (! $event->isExceptionCaught()) {
                 throw $exception;
@@ -60,7 +60,7 @@ class EventMiddleware implements Middleware
         } catch (Throwable $exception) {
             $event = new CommandFailed($command, $exception);
 
-            $this->dispatcher->fire($event);
+            $this->dispatcher->fire('command.failed', $event);
 
             if (! $event->isExceptionCaught()) {
                 throw $exception;
