@@ -135,3 +135,43 @@ class UserController extends Controller
     }
 }
 ```
+
+
+## Listening to Command Events
+
+If the `EventMiddleware` is enabled, it dispatches an event whenever a command is received, handled or fails. You may specify listeners for following events in your `EventServiceProvider`:
+
+- `command.received`
+- `command.handled`
+- `command.failed`
+
+Event listeners will receive the command event object. You may access the command itself via `$event->getCommand()`.
+
+```php
+use TillKruss\LaravelTactician\Events\CommandHandled;
+
+class CommandHandledListener
+{
+    public function handle(CommandHandled $event)
+    {
+        // $event->getCommand()
+    }
+}
+```
+
+You can also catch an error and prevent it from causing the application to fail:
+
+```php
+use App\Exceptions\SomethingWentWrong;
+use TillKruss\LaravelTactician\Events\CommandFailed;
+
+class CommandFailedListener
+{
+    public function handle(CommandFailed $event)
+    {
+        if ($event->getException() instanceof SomethingWentWrong) {
+            $event->catchException();
+        }        
+    }
+}
+```
