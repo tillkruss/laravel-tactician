@@ -2,6 +2,15 @@
 
 All configuration options can be found in the `tactician.php` file, located in your `config` directory.
 
+Table of Contents:
+- [Handler Method Inflector](#handler-method-inflector)
+- [Command Name Extractor](#command-name-extractor)
+- [Command Handler Locator](#command-handler-locator)
+- [Middleware Stack](#middleware-stack)
+- [Namespaces](#namespaces)
+- [Command Handler Mappings](#command-handler-mappings)
+- [Logger Middleware](#logger-middleware)
+
 ## Handler Method Inflector
 
 The `inflector` option specifies the class used determine what method you want to call on your command handlers when they receive a command. For more information, please refer to the [Tactician documentation](http://tactician.thephpleague.com/tweaking-tactician/#handler-method).
@@ -65,13 +74,24 @@ By default only Tactician’s `CommandHandlerMiddleware` is enabled to locate th
 
 You may enable the following bundled middleware, or add your own custom middleware, just be sure to implement the `Middleware` interface. For more information, please refer to the [Tactician documentation](http://tactician.thephpleague.com/middleware/).
 
+- `League\Tactician\Logger\LoggerMiddleware::class`
+- `League\Tactician\CommandEvents\EventMiddleware::class`
+
+### Logger Middleware
+
+The `LoggerMiddleware` writes a message to the log whenever a command is received, handled or fails, to help debug or visualize the flow commands take in the system.
+
 ### Locking Middleware
 
 Tactician’s bundled `LockingMiddleware` blocks any commands from running inside commands. If a command is already being executed and another command comes in, this middleware will queue it in-memory until the first command completes.
 
+### Event Middleware
+
+The `EventMiddleware` dispatches an event whenever a command is received, handled or fails. See [USAGE.md](USAGE.md) for more information.
+
 ### Transaction Middleware
 
-The `TransactionMiddleware` executes each command in a separate database transaction. It will start a transaction before each command begins. If the command is successful, it will commit the transaction. If an `Exception` or `Throwable` is raised, it rolls back the transaction and rethrows the exception.
+The `TransactionMiddleware` executes each command in a separate database transaction. It will start a transaction before each command begins. If the command is successful, it will commit the transaction. If an `Exception` or `Throwable` is raised, it rolls back the transaction and re-throws the exception.
 
 
 ## Namespaces
@@ -89,3 +109,13 @@ The `handlers` option is a simple list of commands _(keys)_ and their handlers _
     // ...
 ],
 ```
+
+
+## Logger Middleware
+
+The `log.formatter` option specifies the formatter class that’s responsible for converting the current command into a message that’s appended to the log. This package ships with these default formatters:
+
+- `ClassNameFormatter` __(default)__
+- `ClassPropertiesFormatter`
+
+The `log.levels` list defines the logging levels. By default, the logger middleware uses the `debug` level for commands being received and handled and the `error` level for commands failing due to exceptions.
