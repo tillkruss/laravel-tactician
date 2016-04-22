@@ -11,14 +11,14 @@ class AdjacentLocator implements HandlerLocator
     /**
      * The container instance.
      *
-     * @var Illuminate\Contracts\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $container;
 
     /**
      * Create a new adjacent locator instance.
      *
-     * @param Illuminate\Contracts\Container\Container  $container
+     * @param \Illuminate\Contracts\Container\Container  $container
      */
     public function __construct(Container $container)
     {
@@ -31,7 +31,7 @@ class AdjacentLocator implements HandlerLocator
      * @param  string  $command
      * @return object
      *
-     * @throws League\Tactician\Exception\MissingHandlerException
+     * @throws \League\Tactician\Exception\MissingHandlerException
      */
     public function getHandlerForCommand($command)
     {

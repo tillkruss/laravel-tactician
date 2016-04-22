@@ -12,14 +12,14 @@ class TransactionMiddleware implements Middleware
     /**
      * The database manager instance.
      *
-     * @var Illuminate\Database\DatabaseManager
+     * @var \Illuminate\Database\DatabaseManager
      */
     protected $database;
 
     /**
      * Create a new transaction middleware.
      *
-     * @param Illuminate\Database\DatabaseManager  $database
+     * @param \Illuminate\Database\DatabaseManager  $database
      */
     public function __construct(DatabaseManager $database)
     {

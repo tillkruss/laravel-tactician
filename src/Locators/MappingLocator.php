@@ -12,22 +12,22 @@ class MappingLocator implements HandlerLocator
     /**
      * The container instance.
      *
-     * @var Illuminate\Contracts\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $container;
 
     /**
      * The configuration instance.
      *
-     * @var Illuminate\Contracts\Config\Repository
+     * @var \Illuminate\Contracts\Config\Repository
      */
     protected $config;
 
     /**
      * Create a new mapping locator instance.
      *
-     * @param Illuminate\Contracts\Container\Container  $container
-     * @param Illuminate\Contracts\Config\Repository    $config
+     * @param \Illuminate\Contracts\Container\Container  $container
+     * @param \Illuminate\Contracts\Config\Repository    $config
      */
     public function __construct(Container $container, Configuration $config)
     {
@@ -41,7 +41,7 @@ class MappingLocator implements HandlerLocator
      * @param  string  $command
      * @return object
      *
-     * @throws League\Tactician\Exception\MissingHandlerException
+     * @throws \League\Tactician\Exception\MissingHandlerException
      */
     public function getHandlerForCommand($command)
     {

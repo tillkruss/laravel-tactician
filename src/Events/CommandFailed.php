@@ -13,7 +13,7 @@ class CommandFailed implements CommandEvent
     /**
      * The exception instance.
      *
-     * @var Exception|Throwable
+     * @var \Exception|\Throwable
      */
     protected $exception;
 
@@ -27,8 +27,8 @@ class CommandFailed implements CommandEvent
     /**
      * Create a new "command failed" event object.
      *
-     * @param object               $command
-     * @param Exception|Throwable  $exception
+     * @param object                 $command
+     * @param \Exception|\Throwable  $exception
      */
     public function __construct($command, $exception)
     {
@@ -39,7 +39,7 @@ class CommandFailed implements CommandEvent
     /**
      * Return the exception instance.
      *
-     * @return Exception|Throwable
+     * @return \Exception|\Throwable
      */
     public function getException()
     {

@@ -15,14 +15,14 @@ class EventMiddleware implements Middleware
     /**
      * The event dispatcher instance.
      *
-     * @var Illuminate\Contracts\Events\Dispatcher
+     * @var \Illuminate\Contracts\Events\Dispatcher
      */
     protected $dispatcher;
 
     /**
      * Create a new command events middleware.
      *
-     * @param Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     * @param \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      */
     public function __construct(Dispatcher $dispatcher)
     {

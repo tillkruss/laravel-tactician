@@ -15,14 +15,14 @@ class Executer implements ExecuterContract
     /**
      * The command bus instance.
      *
-     * @var League\Tactician\CommandBus
+     * @var \League\Tactician\CommandBus
      */
     protected $bus;
 
     /**
      * Create a new command bus executer.
      *
-     * @param League\Tactician\CommandBus  $bus
+     * @param \League\Tactician\CommandBus  $bus
      */
     public function __construct(CommandBus $bus)
     {
@@ -108,7 +108,7 @@ class Executer implements ExecuterContract
      * @param  array               $extras
      * @return mixed
      *
-     * @throws TillKruss\LaravelTactician\Exceptions\CanNotMapParameterValue
+     * @throws Exceptions\CanNotMapParameterValue
      */
     protected function getParameterValueForCommand(
         $command,

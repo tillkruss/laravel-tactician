@@ -13,22 +13,22 @@ class LoggerMiddleware implements Middleware
     /**
      * The application instance.
      *
-     * @var Illuminate\Foundation\Application
+     * @var \Illuminate\Foundation\Application
      */
     protected $app;
 
     /**
      * The logger instance.
      *
-     * @var Illuminate\Contracts\Logging\Log
+     * @var \Illuminate\Contracts\Logging\Log
      */
     protected $logger;
 
     /**
      * Create a new logger middleware.
      *
-     * @param Illuminate\Contracts\Logging\Log   $logger
-     * @param Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Contracts\Logging\Log   $logger
+     * @param \Illuminate\Foundation\Application  $app
      */
     public function __construct(Log $logger, Application $app)
     {
