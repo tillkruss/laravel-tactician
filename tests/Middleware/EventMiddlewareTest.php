@@ -48,7 +48,10 @@ class EventMiddlewareTest extends PHPUnit_Framework_TestCase
     public function testFailureEventExceptionsCanBeCaught()
     {
         $this->dispatcher->shouldReceive('fire')->with(Mockery::on(function ($event) {
-            $event->catchException();
+            if ($event instanceof CommandFailed) {
+                $event->catchException();
+            }
+
             return true;
         }));
 
